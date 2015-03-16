@@ -9,6 +9,8 @@ predicates
    printChildrenAS(String,String)
    printGrandMother(String) 
    printGrandFather(String) 
+   printSister(String)
+   printBrother(String)
 clauses
 
    men ("Tim").
@@ -44,3 +46,5 @@ clauses
    printChildrenAS(X,Y):-parent(X,Z),parent(Y,Z),write("ChildrenAs "),write(X),write(" and  "),write(Y),write(": "),write(Z),nl,fail.
    printGrandMother(X):-parent(Y,X),parent(Z,Y),woman(Z),write(Z),nl,fail.
    printGrandFather(X):-parent(Y,X),parent(Z,Y),men(Z),write(Z),nl,fail.
+   printSister(X):-parent(Y,X),parent(Y,Z),woman(Z),Z<>X,write(Z),!,nl,fail.
+   printBrother(X):-parent(Y,X),parent(Y,Z),men(Z),Z<>X,write(Z),!,nl,fail.
